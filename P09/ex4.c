@@ -9,6 +9,6 @@ int mdc(int x, int y){
     int mdc = 0;
     if(x-y)
 
-
+//teste teste
     return mdc;
 }
