@@ -27,7 +27,7 @@
 int compacta(int entrada[], int n, int saida[])
 {
     int j=1;
-    if (n<0 || n> TAM_MAX)
+    if (n<=0 || n> TAM_MAX)
     {
         return 0;
     }
@@ -42,8 +42,6 @@ int compacta(int entrada[], int n, int saida[])
             }
             else{
                 saida[j]=entrada[i];
-                
-                
                 j++;
             }
         }
