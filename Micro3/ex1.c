@@ -27,26 +27,25 @@
 
 int copia_pares(int entrada[], int n, int saida[])
 {
-    int j=0, aux;
-    
-    if (n<0 || n>TAM_MAX)
+    int j = 0, aux;
+
+    if (n < 0 || n > TAM_MAX)
     {
         return 0;
     }
-    else{
+    else
+    {
         for (int i = 0; i < n; i++)
         {
-            aux = entrada[i]%2;
-           if (aux==0 && entrada[i]!=0)
-           {
-               saida[j]=entrada[i];
-               j++;
-           }
-           
+            aux = entrada[i] % 2;
+            if (aux == 0 && entrada[i] != 0)
+            {
+                saida[j] = entrada[i];
+                j++;
+            }
         }
         return j;
     }
-    
 }
 
 /********************************************/
@@ -55,8 +54,8 @@ void imprime_vetor(int v[], int n);
 
 int main()
 {
-    int v1[TAM_MAX] = { 4, 5, 6, 7, 10 };
-    int v2[TAM_MAX] = { 1, 1, 1 };
+    int v1[TAM_MAX] = {4, 5, 6, 7, 10};
+    int v2[TAM_MAX] = {1, 1, 1};
     int res[TAM_MAX], tam;
 
     tam = copia_pares(v1, 5, res);
@@ -88,7 +87,7 @@ void imprime_vetor(int v[], int n)
 {
     int i;
     printf("{");
-    for(i=0; i<n; i++)
+    for (i = 0; i < n; i++)
         printf(" %d", v[i]);
     printf(" }\n");
 }

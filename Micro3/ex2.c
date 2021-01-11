@@ -26,29 +26,28 @@
 
 int compacta(int entrada[], int n, int saida[])
 {
-    int j=1;
-    if (n<=0 || n> TAM_MAX)
+    int j = 1;
+    if (n <= 0 || n > TAM_MAX)
     {
         return 0;
     }
     else
     {
-        saida[0]=entrada[0];
+        saida[0] = entrada[0];
         for (int i = 1; i < n; i++)
         {
-            if(entrada[i]==entrada[i-1]){
+            if (entrada[i] == entrada[i - 1])
+            {
                 continue;
-                
             }
-            else{
-                saida[j]=entrada[i];
+            else
+            {
+                saida[j] = entrada[i];
                 j++;
             }
         }
         return j;
     }
-    
-    
 }
 
 /********************************************/
@@ -57,8 +56,8 @@ void imprime_vetor(int v[], int n);
 
 int main()
 {
-    int v1[TAM_MAX] = { 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1};
-    int v2[TAM_MAX] = { 1, 0, 0, 0, 0, 1, 0, 1, 1, 0};
+    int v1[TAM_MAX] = {0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1};
+    int v2[TAM_MAX] = {1, 0, 0, 0, 0, 1, 0, 1, 1, 0};
     int res[TAM_MAX], tam;
 
     tam = compacta(v1, 5, res);
@@ -90,7 +89,7 @@ void imprime_vetor(int v[], int n)
 {
     int i;
     printf("{");
-    for(i=0; i<n; i++)
+    for (i = 0; i < n; i++)
         printf(" %d", v[i]);
     printf(" }\n");
 }
