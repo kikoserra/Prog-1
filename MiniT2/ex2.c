@@ -49,7 +49,7 @@ int gravaDecada(filme catalogo[], int n, char *nomeFicheiro, int decada)
             if (catalogo[j].ano == (decada + i))
             {
                 vezes[i]++;
-		    soma++;
+		    	soma++;
             }
         }
     }
