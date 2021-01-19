@@ -49,6 +49,7 @@ int gravaDecada(filme catalogo[], int n, char *nomeFicheiro, int decada)
             if (catalogo[j].ano == (decada + i))
             {
                 vezes[i]++;
+		    soma++;
             }
         }
     }
@@ -58,12 +59,6 @@ int gravaDecada(filme catalogo[], int n, char *nomeFicheiro, int decada)
         fprintf(f, "%d - %d\n", decada + i, vezes[i]);
     }
     fclose(f);
-    for (int i = 0; i < 10; i++)
-    {
-        int num = vezes[i];
-        soma = soma + num;
-    }
-
     return soma;
 }
 
