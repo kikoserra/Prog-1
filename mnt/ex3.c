@@ -13,24 +13,26 @@
  * */
 int lerEquipas(char nomes[][TSIZE], int totalPontos[])
 {
-    int nEquipas = 0, i;
+    int nEquipas = 0, i, nova = 1;
     int pontos;
-    char n1[NSIZE], n2[NSIZE], equipa[TSIZE];
+    char equipa[TSIZE], n1[TSIZE], n2[TSIZE];
 
-    while(nEquipas < MAXT && scanf("%s %s %s %d", n1, n2, equipa, &pontos) == 4)
+    while (nEquipas < MAXT && scanf("%s %s %s %d", n1, n2, equipa, &pontos) == 4)
     {
-        for(i=0; i<nEquipas; i++)
-            if(strcmp(equipa, nomes[i]) == 0)
-                break;
+        for (i = 0; i < nEquipas; i++)
+            if (strcmp(nomes[i], equipa) == 0)
+            {
+                totalPontos[i] += pontos;
+                nova = 0;
+            }
 
-        if(i == nEquipas)
+        if (nova)
         {
             strcpy(nomes[nEquipas], equipa);
             totalPontos[nEquipas] = pontos;
             nEquipas++;
         }
-        else
-            totalPontos[i] += pontos;
+        nova = 1;
     }
 
     return nEquipas;
@@ -41,8 +43,17 @@ int lerEquipas(char nomes[][TSIZE], int totalPontos[])
  * */
 int melhorPontuacao(int pontos[], int n)
 {
+    int max = 0, posi_max = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if (pontos[i] > max)
+        {
+            max = pontos[i];
+            posi_max = i;
+        }
+    }
 
-    return 0;
+    return posi_max;
 }
 
 /*

@@ -13,27 +13,29 @@
  * */
 int lerEquipas(char nomes[][TSIZE], int totalPontos[])
 {
-    char aux[3][NSIZE] = {0};
-    int n, a = 1;
-    for (int i = 0; i < MAXT; i++)
+    int nEquipas = 0, i, nova = 1;
+    int pontos;
+    char equipa[TSIZE], n1[TSIZE], n2[TSIZE];
+
+    while (nEquipas < MAXT && scanf("%s %s %s %d", n1, n2, equipa, &pontos) == 4)
     {
-        scanf("%s %s %s %d", aux[0], aux[1], nomes[i], &totalPontos[i]);
-        printf("%s\n", nomes[i]);
-        while (scanf("%s", aux[0])==1)
-         {
-            scanf("%s %s %d", aux[1], aux[2], &n);  
-            if (strstr(aux[2], nomes[i]))
+        for (i = 0; i < nEquipas; i++)
+            if (strcmp(nomes[i], equipa) == 0)
             {
-                totalPontos[i] += n;break;
+                totalPontos[i] += pontos;
+                nova = 0;
             }
+
+        if (nova)
+        {
+            strcpy(nomes[nEquipas], equipa);
+            totalPontos[nEquipas] = pontos;
+            nEquipas++;
         }
-        printf("%s merda\n", aux[2]);
-        //          //
-        //nao da certo 
-       //           //
-    
+        nova = 1;
     }
-    return 10;
+
+    return nEquipas;
 }
 
 /* Determina qual a equipa com maior pontuação.
@@ -44,17 +46,13 @@ int melhorPontuacao(int pontos[], int n)
     int max = 0, posi_max = 0;
     for (int i = 0; i < n; i++)
     {
-        if (i == 0)
-        {
-            max = pontos[i];
-            posi_max = i;
-        }
         if (pontos[i] > max)
         {
             max = pontos[i];
             posi_max = i;
         }
     }
+
     return posi_max;
 }
 
