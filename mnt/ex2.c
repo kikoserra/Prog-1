@@ -26,10 +26,14 @@ int maisLongo(filme catalogo[], int n)
     int max = 0, posi_max = 0;
     for (int i = 0; i < n; i++)
     {
-        int tam = catalogo[i].duracao;
-        if (tam > max)
+        if (i == 0)
         {
-            max = tam;
+            max = catalogo[i].duracao;
+            posi_max = i;
+        }
+        if (catalogo[i].duracao > max)
+        {
+            max = catalogo[i].duracao;
             posi_max = i;
         }
     }
@@ -39,26 +43,25 @@ int maisLongo(filme catalogo[], int n)
 
 int gravaDecada(filme catalogo[], int n, char *nomeFicheiro, int decada)
 {
+    int vezes[10] = {0}, soma = 0;
     FILE *f;
-
-    int vezes[10], soma = 0;
-    for (int i = 0; i < 10; i++)
+    f = fopen(nomeFicheiro, "w");
+    if (f == NULL)
+        return -1;
+    for (int i = 0; i < n; i++)
     {
-        for (int j = 0; j < n; j++)
+        if (catalogo[i].ano < decada + 10 && catalogo[i].ano >= decada)
         {
-            if (catalogo[j].ano == (decada + i))
-            {
-                vezes[i]++;
-		    	soma++;
-            }
+            vezes[catalogo[i].ano - decada]++;
+            soma++;
         }
     }
-    f = fopen(nomeFicheiro, "w");
     for (int i = 0; i < 10; i++)
     {
         fprintf(f, "%d - %d\n", decada + i, vezes[i]);
     }
     fclose(f);
+
     return soma;
 }
 
@@ -69,31 +72,31 @@ int pesquisaPorPais(filme catalogo[], int n, char *pais, filme resultado[])
     {
         for (int j = 0; j < MAXPAISES; j++)
         {
-            if (strcmp(catalogo[i].origem[j], pais)==0)
+            if (strcmp(catalogo[i].origem[j], pais) == 0)
             {
                 resultado[a] = catalogo[i];
                 a++;
             }
         }
     }
-    int pos = 0, imax, i=0; 
+    int pos = 0, imin, i=0; 
     filme aux;
     while (pos < a-1)
     {
-        imax = pos;
+        imin = pos;
         i = pos + 1;
         while (i < a)
         {
-            /* procura maior */
-            if (resultado[i].duracao > resultado[imax].duracao)
-                imax = i;
+            /* procura menor */
+            if (resultado[i].duracao > resultado[imin].duracao)
+                imin = i;
             i++;
         }
-        if (imax != pos)
+        if (imin != pos)
         { /* troca elementos */
             aux = resultado[pos];
-            resultado[pos] = resultado[imax];
-            resultado[imax] = aux;
+            resultado[pos] = resultado[imin];
+            resultado[imin] = aux;
         }
         pos++;
     }
