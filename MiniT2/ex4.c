@@ -51,57 +51,53 @@ int gravaEstatisticas(jogador statsJogadores[], int n, char *equipa, char *nomeF
 
 void top10Jogadores(jogador statsJogadores[], int n, jogador topJogadores[])
 {
-    int j = 0, posi_min;
-    float min;
-    for (int i = 0; i < TSIZE; i++)
+    int posi_min = 0, j = 0;
+    float min = 300;
+    for (int i = 0; i < TOP; i++)
     {
         topJogadores[i] = statsJogadores[i];
-    }
-    for (int i = 0; i < TSIZE; i++)
-    {
-        if (i == 0)
-        {
-            min = topJogadores[i].pts;
-            posi_min = i;
-        }
         if (topJogadores[i].pts < min)
         {
             min = topJogadores[i].pts;
             posi_min = i;
         }
     }
-    for (int i = TSIZE; i < n; i++)
+    for (int i = TOP; i < n; i++)
     {
         if (statsJogadores[i].pts > min)
         {
             topJogadores[posi_min] = statsJogadores[i];
-        }
-        for (int j = 0; j < TSIZE; j++)
-        {
-            if (j == 0)
+            min = 300;
+            for (int l = 0; l < TOP; l++)
             {
-                min = topJogadores[j].pts;
-                posi_min = j;
-            }
-            if (topJogadores[j].pts < min)
-            {
-                min = topJogadores[j].pts;
-                posi_min = j;
+                if (topJogadores[l].pts < min)
+                {
+                    min = topJogadores[l].pts;
+                    posi_min = l;
+                }
             }
         }
     }
+    int pos = 0, imin, i = 0;
     jogador aux;
-    for (int i = 0; i < TSIZE; i++)
+    while (pos < TOP)
     {
-        for (int j = i + 1; j < TSIZE; j++)
+        imin = pos;
+        i = pos + 1;
+        while (i < TOP)
         {
-            if (topJogadores[j].pts > topJogadores[i].pts)
-            {
-                aux = topJogadores[i];
-                topJogadores[i] = topJogadores[j];
-                topJogadores[j] = aux;
-            }
+            //procura menor
+            if (topJogadores[i].pts > topJogadores[imin].pts)
+                imin = i;
+            i++;
         }
+        if (imin != pos)
+        { //troca elementos
+            aux = topJogadores[pos];
+            topJogadores[pos] = topJogadores[imin];
+            topJogadores[imin] = aux;
+        }
+        pos++;
     }
 }
 
