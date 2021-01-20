@@ -86,7 +86,7 @@ void top10Jogadores(jogador statsJogadores[], int n, jogador topJogadores[])
         i = pos + 1;
         while (i < TOP)
         {
-            //procura menor
+            //procura maior
             if (topJogadores[i].pts > topJogadores[imin].pts)
                 imin = i;
             i++;
