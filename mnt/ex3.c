@@ -19,20 +19,21 @@ int lerEquipas(char nomes[][TSIZE], int totalPontos[])
 
     while (nEquipas < MAXT && scanf("%s %s %s %d", n1, n2, equipa, &pontos) == 4)
     {
-        for (i = 0; i < nEquipas; i++)
+        for (i = 0; i < nEquipas; i++){
             if (strcmp(nomes[i], equipa) == 0)
             {
                 totalPontos[i] += pontos;
                 nova = 0;
             }
 
-        if (nova)
-        {
-            strcpy(nomes[nEquipas], equipa);
-            totalPontos[nEquipas] = pontos;
-            nEquipas++;
-        }
-        nova = 1;
+            if (nova)
+            {
+                strcpy(nomes[nEquipas], equipa);
+                totalPontos[nEquipas] = pontos;
+                nEquipas++;
+            }
+            nova = 1;
+        }   
     }
 
     return nEquipas;
