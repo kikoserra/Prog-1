@@ -17,7 +17,7 @@ typedef struct
     char matricula[MAX_STR];
     portico prt;
     int hor;
-    int min;
+    int min; 
 } passagem;
 
 /****************************************************/
