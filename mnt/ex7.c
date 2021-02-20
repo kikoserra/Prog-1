@@ -7,7 +7,7 @@
 #define MAX_STR 100
 
 typedef struct
-{
+{   
     char nome[MAX_STR];
     float valor;
 } portico;
